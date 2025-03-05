@@ -50,7 +50,5 @@ public class Main {
             // Pilihan tidak valid
             System.out.println("Pilihan tidak valid.");
         }
-
-        scanner.close();
     }
 }
