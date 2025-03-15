@@ -1,13 +1,13 @@
-class Animal {
+class hewan {
     String nama, jenis, suara;
 
-    public Animal(String nama, String jenis, String suara) {
+    public hewan(String nama, String jenis, String suara) {
         this.nama = nama;
         this.jenis = jenis;
         this.suara = suara;
     }
 
-    public void displayInfo() {
+    public void tampilkan() {
         System.out.println("Nama: " + nama);
         System.out.println("Jenis: " + jenis);
         System.out.println("Suara: " + suara);
@@ -16,10 +16,11 @@ class Animal {
 public class Main {
     public static void main(String[] args) {
 
-        Animal animal1 = new Animal("Kucing", "Mamalia", "Miau~~\n");
-        Animal animal2 = new Animal("Anjing", "Mamalia", "Aug~~\n");
+        hewan hewan1 = new hewan("Kucing", "Mamalia", "Miau~~\n");
+        hewan hewan2 = new hewan("Anjing", "Mamalia", "Aug~~\n");
 
-        animal1.displayInfo();
-        animal2.displayInfo();
+
+        hewan1.tampilkan();
+        hewan2.tampilkan();
     }
 }
