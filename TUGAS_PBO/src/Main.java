@@ -1,5 +1,5 @@
 import java.util.Scanner;
-// class admin
+// class adminn
 class admin {
     String username;
     String password;
