@@ -1,52 +1,4 @@
 import java.util.Scanner;
-// class adminn
-class admin {
-    String username;
-    String password;
-    // construktor admin
-    public admin(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
-    // method admin
-    public void login() {
-        String validUsername = "admin082";
-        String validPassword = "password082";
-
-        if (username.equals(validUsername) && password.equals(validPassword)) {
-            System.out.println("Login Admin berhasil!");
-        } else {
-            System.out.println("Login gagal! Username atau password salah.");
-        }
-    }
-}
-// class mahasiswa
-class mahasiswa {
-    String nama;
-    String nim;
-    // construktor mahasiswa
-    public mahasiswa(String nama, String nim) {
-        this.nama = nama;
-        this.nim = nim;
-    }
-    // method mahasiswa
-    public boolean login() {
-        String validNama = "ryan ahmad setiawan";
-        String validNIM = "202410370110082";
-
-        return (nama.equals(validNama) && nim.equals(validNIM));
-    }
-    // method displayInfo
-    public void displayInfo(){
-        if (login()) {
-            System.out.println("Login Mahasiswa berhasil!");
-            System.out.println("Nama: " + nama);
-            System.out.println("NIM: " + nim);
-        } else {
-            System.out.println("Login gagal! Nama atau NIM salah.");
-        }
-    }
-}
 
 public class Main {
     public static void main(String[] args) {
@@ -65,8 +17,9 @@ public class Main {
             System.out.print("Masukkan password: ");
             String password = scanner.nextLine();
             // inisialisasi admin ke main
-            admin admin = new admin(username, password);
+            admin admin = new admin("null","null",username, password);
             admin.login();
+            admin.displayInfo();
         } else if (pilihan == 2) {
             System.out.print("Masukkan Nama: ");
             String nama = scanner.nextLine();
