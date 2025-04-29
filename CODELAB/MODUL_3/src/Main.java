@@ -48,7 +48,7 @@ class Hero extends GameCharacter{
 
     @Override //override is for overriding your method so that the methode from Parent class and Sub-class is different
     public void attack(GameCharacter target){
-        System.out.println(getName() + " attacks " + target.getName() + " using Orbital Strike!"); //using getName to show the value "agentName"
+        System.out.println(getName() + " `attacks` " + target.getName() + " using Orbital Strike!"); //using getName to show the value "agentName"
         target.setHealth(target.getHealth() - getAgentDamage()); //using setHealth to change the Value of target Health
         setName("Brimstone1");
         target.info();
