@@ -13,7 +13,7 @@ public class Main {
         Fiksi.DisplayInfo();
         System.out.println();
 
-        // Membuat objek anggota
+        // Membuat objek anggota        
         Anggota anggota1 = new Anggota("Thouf Hazza Tedya Putera", "C066");
         Anggota anggota2 = new Anggota("Muhammad Faiz Hidayat", "C077");
         Anggota anggota3 = new Anggota("asep hidayat", "C089");
