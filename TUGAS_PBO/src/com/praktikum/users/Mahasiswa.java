@@ -1,6 +1,9 @@
 package com.praktikum.users;
 
 import com.praktikum.actions.MahasiswaActions;
+import com.praktikum.model.Item;
+import com.praktikum.main.Main;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Mahasiswa extends User implements MahasiswaActions {
@@ -10,11 +13,9 @@ public class Mahasiswa extends User implements MahasiswaActions {
     }
 
     @Override
-    public boolean login(){
-        String validNama = "ryan ahmad setiawan";
-        String validNim = "202410370110082";
-
-        return getNama().equals(validNama) && getNim().equals(validNim);
+    public boolean login() {
+        // Login now handled by Main class authentication
+        return true;
     }
 
     @Override
@@ -28,21 +29,28 @@ public class Mahasiswa extends User implements MahasiswaActions {
             System.out.println("2. Lihat Daftar Laporan");
             System.out.println("0. Logout");
             System.out.print("Pilih menu: ");
-            choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
 
-            switch (choice) {
-                case 1:
-                    reportItem();
-                    break;
-                case 2:
-                    viewReportedItem();
-                    break;
-                case 0:
-                    System.out.println("Logout berhasil.");
-                    break;
-                default:
-                    System.out.println("Pilihan tidak valid.");
+            try {
+                choice = scanner.nextInt();
+                scanner.nextLine(); // Consume newline
+
+                switch (choice) {
+                    case 1:
+                        reportItem();
+                        break;
+                    case 2:
+                        viewReportedItems();
+                        break;
+                    case 0:
+                        System.out.println("Logout berhasil.");
+                        break;
+                    default:
+                        System.out.println("Pilihan tidak valid.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Input harus berupa angka!");
+                scanner.nextLine(); // Clear invalid input
+                choice = -1;
             }
         } while (choice != 0);
     }
@@ -61,6 +69,10 @@ public class Mahasiswa extends User implements MahasiswaActions {
         System.out.print("Lokasi Terakhir/Ditemukan: ");
         String lokasi = scanner.nextLine();
 
+        // Create new item and add to reportedItems
+        Item newItem = new Item(namaBarang, deskripsi, lokasi);
+        Main.reportedItems.add(newItem);
+
         System.out.println("\nLaporan berhasil dibuat!");
         System.out.println("Nama Barang: " + namaBarang);
         System.out.println("Deskripsi: " + deskripsi);
@@ -68,7 +80,25 @@ public class Mahasiswa extends User implements MahasiswaActions {
     }
 
     @Override
-    public void viewReportedItem() {
-        System.out.println("\n>> Fitur Lihat Laporan Belum Tersedia <<");
+    public void viewReportedItems() {
+        if (Main.reportedItems.isEmpty()) {
+            System.out.println("\nBelum ada laporan barang.");
+            return;
+        }
+
+        System.out.println("\nDaftar Barang yang Dilaporkan:");
+        int count = 0;
+        for (Item item : Main.reportedItems) {
+            if (item.getStatus().equals("Reported")) {
+                System.out.println("- " + item.getItemName() +
+                        " - " + item.getDescription() +
+                        " - " + item.getLocation());
+                count++;
+            }
+        }
+
+        if (count == 0) {
+            System.out.println("Tidak ada barang yang masih dalam status 'Reported'.");
+        }
     }
 }
